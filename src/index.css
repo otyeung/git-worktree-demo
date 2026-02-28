@@ -344,6 +344,21 @@ button {
   width: 100%;
 }
 
+
+.navbar__theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  transition: background var(--transition-fast);
+}
+
+.navbar__theme-toggle:hover {
+  background: var(--color-border-hover);
+}
 .navbar__toggle {
   display: none;
   flex-direction: column;
@@ -394,6 +409,10 @@ button {
   .navbar__cta {
     width: 100%;
     margin-top: var(--space-4);
+  }
+
+  .navbar__theme-toggle {
+    margin: var(--space-2) 0;
   }
 }
 

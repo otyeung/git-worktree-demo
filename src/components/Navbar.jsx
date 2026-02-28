@@ -1,8 +1,20 @@
 import { useState } from 'react';
-import { NAV_LINKS, BRAND } from '../data/navigation';
+import { NAV_LINKS, BRAND, THEME_TOGGLE } from '../data/navigation';
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [theme, setTheme] = useState(
+        () => document.documentElement.dataset.theme || 'dark',
+    );
+
+    function toggleTheme() {
+        const next = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    }
+
+    const isDark = theme === 'dark';
 
     return (
         <header className="navbar" role="banner">
@@ -39,6 +51,15 @@ function Navbar() {
                             </li>
                         ))}
                     </ul>
+                    <button
+                        className="navbar__theme-toggle"
+                        onClick={toggleTheme}
+                        aria-label={isDark ? THEME_TOGGLE.darkLabel : THEME_TOGGLE.lightLabel}
+                    >
+                        <span aria-hidden="true">
+                            {isDark ? THEME_TOGGLE.darkIcon : THEME_TOGGLE.lightIcon}
+                        </span>
+                    </button>
                     <a href="#demo" className="btn btn--primary btn--sm navbar__cta">
                         預約 Demo
                     </a>
